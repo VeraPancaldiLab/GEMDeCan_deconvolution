@@ -1,0 +1,8 @@
+.snakemake
+results
+snakemake_results
+credentials.txt
+.RData
+.Rhistory
+inputs/*
+scripts/GDCdata/*
