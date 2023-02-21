@@ -6,3 +6,4 @@ credentials.txt
 .Rhistory
 scripts/GDCdata/*
 *.zip
+*.~lock.*
