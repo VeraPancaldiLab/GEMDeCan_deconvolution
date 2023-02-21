@@ -6,4 +6,7 @@ credentials.txt
 .Rhistory
 scripts/GDCdata/*
 *.zip
-*.~lock.*
+inputs/all_TCGA.txt
+inputs/Silico_1700.txt
+inputs/LUAD_RNAseq_TPM.txt
+*/input/*csv
