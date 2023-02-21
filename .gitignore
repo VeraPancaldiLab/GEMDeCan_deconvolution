@@ -10,3 +10,4 @@ inputs/all_TCGA.txt
 inputs/Silico_1700.txt
 inputs/LUAD_RNAseq_TPM.txt
 BC*.csv
+inputs/*.csv
