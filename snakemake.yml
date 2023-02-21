@@ -18,12 +18,26 @@ CREDENTIALS_FILE: credentials.txt
 # Input mixtures can be obtanined from:
 # /mnt/SERVER-CRCT-STORAGE/CRCT21/Private/Miguel/deconvolutions_pipeline/inputs
 MIXTURES:
-  - Melanoma_GSE72056_no_malighant
-  - Melanoma_GSE93722
-  - Silico_1700
-  - Thomas_RNAseq_part
-  - all_TCGA
-
+  #- Melanoma_GSE72056_not_metastatic
+  # - Melanoma_GSE93722
+  # - Silico_1700
+  #- MultipleMyeloma
+  #- all_TCGA
+  # - GSE1070112
+  # - IMMUCan-BC2
+  # - IMMUCan-BC3
+  # - IMMUCan-NSCLC
+  ##### FOR MARCELO (14/02/23)
+  # - Maha_TPM_normalization_bulk
+  ### TPMs From Leila (14/02/23)
+  # - VanD_ALL_TMP
+  # - IP_ALL_TMP
+  # - LP_ALL_TMP
+  # - Gide
+  # - Riaz
+  # - Liu
+  - Hugo
+  
 
 # All references files have to finish with .txt and don't add the .txt here
 # It's mandatory to have the references and the mixtures in the same INPUT_FOLDER
@@ -31,9 +45,12 @@ MIXTURES:
 # /mnt/SERVER-CRCT-STORAGE/CRCT21/Private/Miguel/deconvolutions_pipeline/inputs
 CBSx_SIGNATURES:
   - LM22
-  - Fig2ab-NSCLC_PBMCs_scRNAseq_sigmatrix
-  - scRNA-Seq_melanoma_Tirosh_sigmatrix_SuppFig_3-b
-  - sigmatrix_HNSCC_Fig2cd
+  - NSCLC-scRNAseq
+  - scRNA-melanoma
+  - HNSCC
+  - TIL10
+  - CCLE-TIL10
+  - CD226
 
 channels:
   - conda-forge

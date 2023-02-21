@@ -2,6 +2,8 @@ library(argparse)
 library(readr)
 library(tibble)
 library(dplyr)
+library(codetools) 
+
 source("scripts/deconvolution/deconvolution_algorithms.R")
 
 parser <- ArgumentParser(description = "Run all deconvolutions algorithms and signatures")
