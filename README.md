@@ -13,7 +13,7 @@ Hugo - Krieg - Auslander - Cloughesy - GSE107011 - Gide - LUAD_RNAseq_TPM - Liu 
 - LM22 - Fig2ab-NSCLC_PBMCs_scRNAseq_sigmatrix - scRNA-Seq_melanoma_Tirosh_sigmatrix_SuppFig_3-b - sigmatrix_HNSCC_Fig2cd
 ~~~
 
-# Linux packages
+# Linux packages:
 ~~~
 sudo apt-get install zlib1g-dev
 
