@@ -12,3 +12,7 @@ inputs/LUAD_RNAseq_TPM.txt
 BC*.csv
 inputs/*.csv
 */.~lock.*
+*IMMU**
+*LP*
+*VanD*
+*IP*
