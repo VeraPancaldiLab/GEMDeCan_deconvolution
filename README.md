@@ -19,7 +19,12 @@ bioRxiv 2021.04.09.439207; doi: https://doi.org/10.1101/2021.04.09.439207
 
 ### Included databases:
 ~~~
-Hugo - Krieg - Auslander - Cloughesy - GSE107011 - Gide - LUAD_RNAseq_TPM - Liu - Melanoma_GSE72056_no_malighant - Melanoma_GSE93722 - Riaz - Silico_1700 - Snyder - Thomas_RNAseq_part - all_TCGA - Maha - IP_TPM - PDAC_data_TPM
+  - all_TCGA
+  - Melanoma_GSE72056_not_metastatic # Single cell RNA-seq analysis of melanoma Tirosh
+  - Melanoma_GSE93722 #RNA-seq from lymph node bulk samples from 4 melanoma patients.
+  - Silico_1700
+  - MultipleMyeloma
+  - GSE1070112 # RNA-Seq profiling of 29 immune cell types and peripheral blood mononuclear cells
 ~~~
 ### Signatures:
 ~~~
