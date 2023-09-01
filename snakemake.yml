@@ -18,10 +18,10 @@ CREDENTIALS_FILE: credentials.txt
 # Input mixtures can be obtanined from:
 # /mnt/SERVER-CRCT-STORAGE/CRCT21/Private/Miguel/deconvolutions_pipeline/inputs
 MIXTURES:
-  - all_TCGA
-  - Melanoma_GSE72056_not_metastatic # Single cell RNA-seq analysis of melanoma Tirosh
-  - Melanoma_GSE93722 #RNA-seq from lymph node bulk samples from 4 melanoma patients.
-  - Silico_1700
+  # - all_TCGA
+  # - Melanoma_GSE72056_not_metastatic # Single cell RNA-seq analysis of melanoma Tirosh
+  # - Melanoma_GSE93722 #RNA-seq from lymph node bulk samples from 4 melanoma patients.
+  # - Silico_1700
   - MultipleMyeloma
   - GSE1070112 # RNA-Seq profiling of 29 immune cell types and peripheral blood mononuclear cells
 
@@ -35,9 +35,9 @@ CBSx_SIGNATURES:
   - NSCLC-scRNAseq
   - scRNA-melanoma
   - HNSCC
-  - TIL10
-  - CCLE-TIL10
-  - CD226
+  # - TIL10
+  # - CCLE-TIL10
+  # - CD226
 
 channels:
   - conda-forge

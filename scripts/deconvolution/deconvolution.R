@@ -1,8 +1,18 @@
-library(argparse)
-library(readr)
-library(tibble)
-library(dplyr)
-library(codetools) 
+dynamic_require <- function(package){
+  if(eval(parse(text=paste("require(",package,")")))) return(TRUE)
+  
+  install.packages(package, dependencies = TRUE)
+  return(eval(parse(text=paste("require(",package,")"))))
+}
+
+
+dynamic_require('survival')
+dynamic_require('argparse')
+dynamic_require('readr')
+dynamic_require('tibble')
+dynamic_require('dplyr')
+dynamic_require('codetools')
+dynamic_require('tidyr')
 
 source("scripts/deconvolution/deconvolution_algorithms.R")
 
