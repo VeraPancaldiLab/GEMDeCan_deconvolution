@@ -99,6 +99,15 @@ remotes::install_github("trevorld/r-argparse")
 # How to run the pipeline (sudo/root permissions are mandatory)
 `sudo snakemake --cores 8 all`
 
+# CIBERSORTX
+CIBERSORTx is included in the deconvolution methods in the GEMDeCaN pipeline, but it's not run by default as it's not an open-source program. 
+
+To run it, please create a file named `credentials.txt` with your username and password on separate lines to activate this option.
+
+```{r}
+MAIL: username123@email.com
+TOKEN: token_passowrd123
+```
 
 
 ## Output files
