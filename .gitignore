@@ -1,5 +1,4 @@
 .snakemake
-results
 snakemake_results
 credentials.txt
 .RData
