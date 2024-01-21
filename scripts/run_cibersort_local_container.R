@@ -1,11 +1,10 @@
-# print('INSTALL PACKAGES')
-# install.packages("Rcpp",dependencies=TRUE)
-# install.packages("dplyr",dependencies=TRUE)
-# install.packages("argparse",dependencies=TRUE)
-# install.packages(c("remotes", "devtools", "dplyr", "tidyr", "readr", "stringr", "magrittr", "purrr"))
-# BiocManager::install(c("EpiDISH", "DeconRNASeq"))
-# devtools::install_github("ebecht/MCPcounter",ref="master", subdir="Source")
-# remotes::install_github("icbi-lab/immunedeconv")
+# r = getOption("repos")
+# r["CRAN"] = "https://cloud.r-project.org/"
+# options(repos = r)
+
+# install.packages("remotes")
+# remotes::install_github("trevorld/r-argparse")
+# install.packages(c("dplyr", "tidyr", "readr", "stringr", "magrittr", "purrr"))
 
 ## ------------------------------------------------------------------------------------------------------------------------------
 library(readr)
@@ -14,7 +13,6 @@ library(tools)
 library(argparse)
 library(dplyr)
 library(magrittr)
-
 
 ## ------------------------------------------------------------------------------------------------------------------------------
 parser <- ArgumentParser(description = "Run CIBERSORTx algorithm in local")

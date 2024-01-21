@@ -35,8 +35,8 @@ CBSx_SIGNATURES:
   - NSCLC-scRNAseq
   - scRNA-melanoma
   - HNSCC
-  # - TIL10
-  # - CCLE-TIL10
+  - TIL10
+  - CCLE-TIL10
   # - CD226
 
 channels:

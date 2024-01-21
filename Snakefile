@@ -70,7 +70,7 @@ rule fix_root_permissions:
   output:
     OUTPUT_FOLDER + "/.fixed_permissions"
   shell:
-    "touch {output} && chown -R " + real_user + ":" + real_user + " " + OUTPUT_FOLDER
+    "touch {output} && chown -R " + real_user + " " + OUTPUT_FOLDER
 
 rule all:
   input:
