@@ -38,9 +38,12 @@ The snakefile shouldn't be modified. A provided `config.yaml` file takes as inpu
  * **Output directory** : directory for all outputs. If you have multiple dataset, make one for each dataset.
  * **Input** : directory where your RNASeq data are located (`.fastq` or `.bcl`). If using only deconvolution, the path to your quantification matrix file (tab-separated TPM values). Note that your .fastq files should end with "R1" and "R2" to be properly processed by the pipeline.
  * **Threads** : number of threads allowed for each job.
-   
+ * 
 ### Deconvolution
  * **Signatures** : Path to folder containing signatures to use for the deconvolution
+
+
+
 
 ## Data availability
 The code to reproduce all figures is available in this repository under `Paper_Figure_code.Rmd`.  
@@ -80,12 +83,21 @@ sudo apt-get install -y libxml2-dev
 ~~~
 
 # R packages to install
+~~~
+install.packages(c("remotes", "devtools", "dplyr", "tidyr", "readr", "stringr", "magrittr", "purrr", 'BiocManager'))
+install.packages('devtools')
+BiocManager::install(c("EpiDISH", "DeconRNASeq"))
+devtools::install_github("ebecht/MCPcounter",ref="master", subdir="Source")
+remotes::install_github("icbi-lab/immunedeconv")
+devtools::install_github('dviraran/xCell')
+~~~
 
-Go to the files `scripts/run_cibersort_local_container.R` and `scripts/deconvolution/deconvolution_algorithms.R` and uncomment the first lines for the first time you run the pipeline. After the first time, you can comment them again to avoid re-installing them in the future.
+### if `argparse` is missing
+Install https://github.com/trevorld/r-argparse 
+~~~
+remotes::install_github("trevorld/r-argparse")
+~~~
 
-# Docker installation (if missing)
-
-Install it following this tutorial https://kinsta.com/blog/install-docker-ubuntu/#installing-docker-desktop-on-ubuntu (recommended)
 
 # How to run the pipeline (sudo/root permissions are mandatory)
 `sudo snakemake --cores 8 all`
