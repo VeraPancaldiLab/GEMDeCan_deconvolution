@@ -1,4 +1,16 @@
 
+# r = getOption("repos")
+# r["CRAN"] = "https://cloud.r-project.org/"
+# options(repos = r)
+# 
+# install.packages("sass")
+# install.packages("devtools") 
+# install.packages("BiocManager")
+#remotes::install_version("matrixStats", version="1.1.0")
+# BiocManager::install(c("EpiDISH", "DeconRNASeq"))
+#devtools::install_github('dviraran/xCell')
+# devtools::install_github("ebecht/MCPcounter",ref="master", subdir="Source")
+# remotes::install_github("icbi-lab/immunedeconv")
 
 # Load required libraries
 suppressPackageStartupMessages({
@@ -13,6 +25,7 @@ suppressPackageStartupMessages({
   library(immunedeconv) # deconvolute
   library(DeconRNASeq) # DeconRNASeq
   library(purrr) # reduce
+  library(xCell)
 })
 
 computeQuantiseq <- function(TPM_matrix) {
@@ -44,6 +57,21 @@ computeMCP <- function(TPM_matrix) {
     })
   mcp
 }
+
+computeXCell <- function(TPM_matrix) {
+  xcell <- as_tibble(deconvolute(TPM_matrix, "xcell")) %>%
+    pivot_longer(-cell_type) %>%
+    pivot_wider(names_from = cell_type, values_from = value) %>%
+    dplyr::rename(sample = name)
+  
+  colnames(xcell)[-1] <- str_c("XCell_", colnames(xcell)[-1])
+  colnames(xcell) <- sapply(colnames(xcell), . %>%
+                              {
+                                str_replace_all(., " ", "_")
+                              })
+  xcell
+}
+
 methods_with_variable_signatures <- function(TPM_matrix, signature_files) {
   TPM_df <- as.data.frame(TPM_matrix)
   all_methods_and_signatures <- lapply(signature_files, function(signature_file) {
@@ -82,10 +110,13 @@ deconvolutions <- function(TPM_matrix) {
       computeQuantiseq(TPM_matrix)
     } else if (method == "MCP") {
       computeMCP(TPM_matrix)
+    } else if (method == "xCell") {
+      computeXCell(TPM_matrix)
     } else if (method == "rest") {
       methods_with_variable_signatures(TPM_matrix, signature_files)
     }
   })
+
 
 
   all_deconvolutions_table %<>% discard(is.null) %>% reduce(inner_join, "sample")

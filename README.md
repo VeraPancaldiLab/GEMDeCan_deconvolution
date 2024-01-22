@@ -76,8 +76,11 @@ bioRxiv 2021.04.09.439207; doi: https://doi.org/10.1101/2021.04.09.439207
 sudo apt-get install zlib1g-dev
 
 sudo apt-get install libpng-dev
-~~~
 
+sudo apt-get install -y libtiff5-dev
+
+sudo apt-get install -y libxml2-dev
+~~~
 
 # R packages to install
 ~~~
