@@ -1,5 +1,5 @@
 # GEMDeCan
-GEMDeCan: Gene Expression and Methylation based Deconvolution for Cancer 
+GEMDeCan: Gene Expression and Methylation based Deconvolution for Cancer
 
 
 ## Welcome to the GEMDeCan repository.  
