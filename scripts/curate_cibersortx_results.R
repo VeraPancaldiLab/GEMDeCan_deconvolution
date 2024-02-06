@@ -21,7 +21,7 @@ filename_sig <- args$signature
 results <- read_tsv(args$cibersortx_results_file)
 colnames(results) <- sapply(colnames(results), . %>%
   {
-    str_replace_all(str_c("CBSX__", filename_sig, "__", .), " ", "_")
+    str_replace_all(str_c("CBSX_", filename_sig, "_", .), " ", "_")
   })
 
 colnames(results)[1] <- "Samples"

@@ -22,9 +22,9 @@ MIXTURES:
   # - Melanoma_GSE72056_not_metastatic # Single cell RNA-seq analysis of melanoma Tirosh
   # - Melanoma_GSE93722 #RNA-seq from lymph node bulk samples from 4 melanoma patients.
   # - Silico_1700
-  #- MultipleMyeloma
+  - MultipleMyeloma
   #- GSE1070112 # RNA-Seq profiling of 29 immune cell types and peripheral blood mononuclear cells
-  - LP
+  #- salmon
 
 
 # All references files have to finish with .txt and don't add the .txt here
