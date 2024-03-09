@@ -63,8 +63,7 @@ Docker (If not already installed)
 
 R packages 
 
-Go to the files `scripts/run_cibersort_local_container.R` and `scripts/deconvolution/deconvolution_algorithms.R` and uncomment the first lines for the first time you run the pipeline. 
-After the first time, you can comment them again to avoid re-looking for them in the future.
+After running GEMDeCan succesfully for the first time, go to the files `scripts/run_cibersort_local_container.R`, `scripts/merge_all_deconvolutions.R` and `scripts/deconvolution/deconvolution_algorithms.R` and uncomment the first lines to avoid re-looking for them in the future.
 
 ### Configure your workspace
 - Input file should be save in folder `inputs/`
