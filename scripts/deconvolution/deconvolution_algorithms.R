@@ -1,17 +1,15 @@
+#Comment these lines after running for the first time GEMDeCan
+r = getOption("repos")
+r["CRAN"] = "https://cloud.r-project.org/"
+options(repos = r)
+install.packages(c("sass", "devtools", "BiocManager")
+BiocManager::install(c("EpiDISH", "DeconRNASeq"))
+devtools::install_github('dviraran/xCell')
+devtools::install_github("ebecht/MCPcounter",ref="master", subdir="Source")
+remotes::install_github("icbi-lab/immunedeconv")
+remotes::install_version("matrixStats", version="1.1.0")
 
-# r = getOption("repos")
-# r["CRAN"] = "https://cloud.r-project.org/"
-# options(repos = r)
-# 
-# install.packages("sass")
-# install.packages("devtools") 
-# install.packages("BiocManager")
-#remotes::install_version("matrixStats", version="1.1.0")
-# BiocManager::install(c("EpiDISH", "DeconRNASeq"))
-#devtools::install_github('dviraran/xCell')
-# devtools::install_github("ebecht/MCPcounter",ref="master", subdir="Source")
-# remotes::install_github("icbi-lab/immunedeconv")
-
+#------------------------------------------------------------
 # Load required libraries
 suppressPackageStartupMessages({
   library(codetools) 
