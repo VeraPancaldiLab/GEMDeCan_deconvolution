@@ -1,3 +1,8 @@
+#Comment these lines after running for the first time GEMDeCan
+install.packages(c("readr", "remotes", "dplyr", "magrittr", "purrr"))
+remotes::install_github("trevorld/r-argparse")
+
+#-----------------------------------------------------------------
 library(readr)
 library(argparse)
 library(dplyr)
