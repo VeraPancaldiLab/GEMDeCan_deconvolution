@@ -1,21 +1,39 @@
 # GEMDeCan
 GEMDeCan: Gene Expression and Methylation based Deconvolution for Cancer 
 
+## Welcome to the GEMDeCan repository  
+You will find here a snakemake pipeline to perform immune cell type deconvolution using 6 methods and 12 signatures based on gene expression and methylation data.   
 
-## Welcome to the GEMDeCan repository.  
-You will find here two snakemake pipelines to process and perform deconvolution on gene expression and methylation data, in the respectively named folders.  
-Each pipeline comes with a readme detailing its installation and usage.
-
-
-## Introduction
-This computational pipeline takes as input BCL or FASTQ files of RNA-seq reads, performs trimming, quantification and deconvolution with the following softwares :
 ![](./assets/pipeline.png)
 
+## Organization
+ * **inputs** : Directory where your inputs are located along with the signatures files used in the pipeline.
+ * **results** : Directory where your output will be saved. `cibersortx/` is where CibersortX results are saved, `deconvolutions/` is where results from all the other methods without CibersortX are saved and `all_deconvolutions/` is where all deconvolution results merged are saved.
+ * **scripts** : Directory where you will find all the scripts produce to run the pipeline
+   
+## Using GEMDeCan
 
+### Input file 
 
-## Installation
+- **Gene expression matrix**: TPM normalized in .txt format
+
+Format specification
+```
+gene    Sample1   Sample2   Sample3
+ g1      1.8       5.2       4.1
+ g2      5.7       8.3       2.0
+ g3      6.2       3.1       9.2
+ g4      7.2       9.1       0.6
+```
+
+Example of how to save the input file from R: 
+```
+write.table(counts.TPM.normalized, "GEMDeCan_deconvolution/inputs/file_name.txt", quote = F, sep = "\t", row.names = F)
+```
+If your gene expression matrix includes non coding genes associated with C/D Boxes (e.g. SNORD116-28) remove them before running the pipeline.
+
+### Installation
 Snakemake allows for a very efficient and user friendly way of using pipelines. It is designed so all you need to install is _mamba_ which is required to install Snakemake
-
 Note that officially only Linux is supported for this pipeline. This also requires an Internet connection in order to use _mamba_ auto-generated environments for all necessary software and packages.
 
 Mamba
@@ -28,81 +46,44 @@ Snakemake
 `conda activate base`
 `mamba install snakemake -n base -c conda-forge -c bioconda`
 
-## Dependencies
-All dependencies are automatically installed by snakemake using the .yaml configuration files in Tools. So the user does not need to configure the conda environments as it is done within the pipeline.
+Linux packages
+` sudo apt install build-essential `
+` sudo apt-get install r-base-dev `
+` sudo apt-get install -y libtiff5-dev zlib1g-dev libpng-dev libxml2-dev  libharfbuzz-dev libfribidi-dev libcurl4-openssl-dev libfontconfig1-dev liblapack-dev libopenblas-dev `
 
-## Configure your workspace
-The snakefile shouldn't be modified. A provided `config.yaml` file takes as input all needed directories and files.
+Docker (If not already installed)
+* [Linux](https://kinsta.com/blog/install-docker-ubuntu/#installing-docker-desktop-on-ubuntu)
+` sudo apt install ca-certificates curl gnupg lsb-release `
+` sudo mkdir -p /etc/apt/keyrings `
+` curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg `
+` sudo chmod a+r /etc/apt/keyrings/docker.gpg `
+` echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null `
+` sudo apt update `
+` sudo apt install docker-ce docker-ce-cli containerd.io `
 
-### General informations
- * **Output directory** : directory for all outputs. If you have multiple dataset, make one for each dataset.
- * **Input** : directory where your RNASeq data are located (`.fastq` or `.bcl`). If using only deconvolution, the path to your quantification matrix file (tab-separated TPM values). Note that your .fastq files should end with "R1" and "R2" to be properly processed by the pipeline.
- * **Threads** : number of threads allowed for each job.
-   
-### Deconvolution
- * **Signatures** : Path to folder containing signatures to use for the deconvolution
+R packages 
 
-## Data availability
-The code to reproduce all figures is available in this repository under `Paper_Figure_code.Rmd`.  
-All data to reproduce those figures are freely available on Figshare :  
-https://figshare.com/account/home#/projects/134069
+After running GEMDeCan succesfully for the first time, go to the files `scripts/run_cibersort_local_container.R`, `scripts/merge_all_deconvolutions.R` and `scripts/deconvolution/deconvolution_algorithms.R` and uncomment the first lines to avoid re-looking for them in the future.
 
-## Citation 
-To cite the pipeline, refer to our paper on [BiorXiv](https://www.biorxiv.org/content/10.1101/2021.04.09.439207v2) :  
-**GEM-DeCan: Improved tumor immune microenvironment profiling through novel gene expression and DNA methylation signatures predicts immunotherapy response**  
-Ting Xie, Jacobo Solorzano, Miguel Madrid-Mencía, Abdelmounim Essabbar, Julien Pernet, Mei-Shiue Kuo, Alexis Hucteau, Alexis Coullomb, Nina Verstraete, Olivier Delfour, Francisco Cruzalegui,  Vera Pancaldi 
-bioRxiv 2021.04.09.439207; doi: https://doi.org/10.1101/2021.04.09.439207
+### Configure your workspace
+- Input file should be save in folder `inputs/`
+- Go to the file `snakemake.yml` and add the name of your input file in the section `Mixtures`
 
-
-### Included databases:
-~~~
-  - all_TCGA
-  - Melanoma_GSE72056_not_metastatic # Single cell RNA-seq analysis of melanoma Tirosh
-  - Melanoma_GSE93722 #RNA-seq from lymph node bulk samples from 4 melanoma patients.
-  - Silico_1700
-  - MultipleMyeloma
-  - GSE1070112 # RNA-Seq profiling of 29 immune cell types and peripheral blood mononuclear cells
-~~~
-### Signatures:
-~~~
-- LM22 - Fig2ab-NSCLC_PBMCs_scRNAseq_sigmatrix - scRNA-Seq_melanoma_Tirosh_sigmatrix_SuppFig_3-b - sigmatrix_HNSCC_Fig2cd
-~~~
-
-# Linux packages:
-~~~
-sudo apt-get install zlib1g-dev
-
-sudo apt-get install libpng-dev
-
-sudo apt-get install -y libtiff5-dev
-
-sudo apt-get install -y libxml2-dev  libharfbuzz-dev libfribidi-dev 
-~~~
-
-# R packages to install
-
-Go to the files `scripts/run_cibersort_local_container.R` and `scripts/deconvolution/deconvolution_algorithms.R` and uncomment the first lines for the first time you run the pipeline. After the first time, you can comment them again to avoid re-installing them in the future.
-
-# Docker installation (if missing)
-
-Install it following this tutorial https://kinsta.com/blog/install-docker-ubuntu/#installing-docker-desktop-on-ubuntu (recommended)
-
-# How to run the pipeline (sudo/root permissions are mandatory)
+### Run GEMDeCan
 `sudo snakemake --cores 8 all`
 
-# CIBERSORTX
-CIBERSORTx is included in the deconvolution methods in the GEMDeCaN pipeline, but it's not run by default as it's not an open-source program. 
+## CIBERSORTX
+CIBERSORTx is included in the deconvolution methods in the GEMDeCan pipeline, but it's not run by default as it's not an open-source program. 
 
-To run it, please create a file named `credentials.txt` with your username and password on separate lines to activate this option.
+To run it, please ask for a token in [CibersortX](https://cibersortx.stanford.edu/register.php) and create a file named `credentials.txt` with your username and password on separate lines. 
 
 ```{r}
 MAIL: username123@email.com
 TOKEN: token_passowrd123
 ```
 
-
-## Output files
-
-### Deconvolution
-* **deconvolution.txt** : results of deconvolution : a table of cell type per sample.
-* An HTML summary report of the deconvolution results.
+## Citation 
+To cite the pipeline, refer to our paper on [BiorXiv](https://www.biorxiv.org/content/10.1101/2021.04.09.439207v2) :  
+**GEM-DeCan: Improved tumor immune microenvironment profiling through novel gene expression and DNA methylation signatures predicts immunotherapy response**  
+Ting Xie, Jacobo Solorzano, Miguel Madrid-Mencía, Abdelmounim Essabbar, Julien Pernet, Mei-Shiue Kuo, Alexis Hucteau, Alexis Coullomb, Nina Verstraete, Olivier Delfour, Francisco Cruzalegui,  Vera Pancaldi 
+bioRxiv 2021.04.09.439207; doi: https://doi.org/10.1101/2021.04.09.439207

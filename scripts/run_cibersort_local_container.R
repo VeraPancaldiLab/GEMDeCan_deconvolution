@@ -1,10 +1,10 @@
-# r = getOption("repos")
-# r["CRAN"] = "https://cloud.r-project.org/"
-# options(repos = r)
-
-# install.packages("remotes")
-# remotes::install_github("trevorld/r-argparse")
-# install.packages(c("dplyr", "tidyr", "readr", "stringr", "magrittr", "purrr"))
+#(Comment these lines after running for the first time GEMDeCan)
+r = getOption("repos")
+r["CRAN"] = "https://cloud.r-project.org/"
+options(repos = r)
+install.packages("remotes")
+remotes::install_github("trevorld/r-argparse")
+install.packages(c("dplyr", "tidyr", "readr", "stringr", "magrittr", "purrr"))
 
 ## ------------------------------------------------------------------------------------------------------------------------------
 library(readr)
