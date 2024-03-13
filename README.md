@@ -1,7 +1,7 @@
 # GEMDeCan
 GEMDeCan: Gene Expression and Methylation based Deconvolution for Cancer 
 
-## Welcome to the GEMDeCan repository  
+## Welcome to the GEMDeCan repository
 You will find here a snakemake pipeline to perform immune cell type deconvolution using 6 methods and 12 signatures based on gene expression and methylation data.   
 
 ![](./assets/pipeline.png)
