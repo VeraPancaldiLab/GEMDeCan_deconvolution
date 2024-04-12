@@ -32,8 +32,6 @@ write.table(counts.TPM.normalized, "GEMDeCan_deconvolution/inputs/file_name.txt"
 ```
 Note that the input file should be saved in `inputs/` directory. Additionally, go to the `snakemake.yml` file and add the name of your input file (without extension) in the `Mixtures` section. 
 
-If your gene expression matrix includes non coding genes associated with C/D Boxes (e.g. SNORD116-28) remove them before running the pipeline.
-
 ### Installation
 Snakemake allows for a very efficient and user friendly way of using pipelines. It is designed so all you need to install is _mamba_ which is required to install Snakemake
 Note that officially only Linux is supported for this pipeline. This also requires an Internet connection in order to use _mamba_ auto-generated environments for all necessary software and packages.
