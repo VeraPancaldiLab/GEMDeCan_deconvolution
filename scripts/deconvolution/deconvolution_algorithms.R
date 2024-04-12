@@ -2,8 +2,14 @@
 r = getOption("repos")
 r["CRAN"] = "https://cloud.r-project.org/"
 options(repos = r)
-install.packages(c("sass", "devtools", "BiocManager")
-BiocManager::install(c("EpiDISH", "DeconRNASeq"))
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install(version = "3.16", ask = F)
+install.packages("class")
+BiocManager::install("EpiDISH")
+BiocManager::install("DeconRNASeq", force = T)
+install.packages(c("sass", "devtools"))
 devtools::install_github('dviraran/xCell')
 devtools::install_github("ebecht/MCPcounter",ref="master", subdir="Source")
 remotes::install_github("icbi-lab/immunedeconv")
@@ -27,6 +33,9 @@ suppressPackageStartupMessages({
 })
 
 computeQuantiseq <- function(TPM_matrix) {
+  
+  TPM_matrix = TPM_matrix[rownames(TPM_matrix)%in%rownames(immunedeconv::dataset_racle$expr_mat),]
+  
   quantiseq <- as_tibble(deconvolute(TPM_matrix, "quantiseq")) %>%
     pivot_longer(-cell_type) %>%
     pivot_wider(names_from = cell_type, values_from = value) %>%
