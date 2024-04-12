@@ -26,10 +26,12 @@ gene    Sample1   Sample2   Sample3
  g4      7.2       9.1       0.6
 ```
 
-Example of how to save the input file from R: 
+Once this format is achieved, you can save the input file from R using: 
 ```
 write.table(counts.TPM.normalized, "GEMDeCan_deconvolution/inputs/file_name.txt", quote = F, sep = "\t", row.names = F)
 ```
+Note that the input file should be saved in `inputs/` directory. Additionally, go to the `snakemake.yml` file and add the name of your input file (without extension) in the `Mixtures` section. 
+
 If your gene expression matrix includes non coding genes associated with C/D Boxes (e.g. SNORD116-28) remove them before running the pipeline.
 
 ### Installation
@@ -70,7 +72,7 @@ After running GEMDeCan succesfully for the first time, go to the files `scripts/
 - Go to the file `snakemake.yml` and add the name of your input file in the section `Mixtures`
 
 ### Run GEMDeCan
-`sudo snakemake --cores 8 all`
+Either `sudo snakemake --cores 8 all` or `sudo path_where_snakemake_is_located --cores 8 all` depending if snakemake has been installed locally or not.
 
 ## CIBERSORTX
 CIBERSORTx is included in the deconvolution methods in the GEMDeCan pipeline, but it's not run by default as it's not an open-source program. 
