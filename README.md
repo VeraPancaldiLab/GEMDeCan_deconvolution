@@ -81,7 +81,6 @@ To run it, please ask for a token in [CibersortX](https://cibersortx.stanford.ed
 MAIL: username123@email.com
 TOKEN: token_passowrd123
 ```
-
 ## Citation 
 To cite the pipeline, refer to our paper on [BiorXiv](https://www.biorxiv.org/content/10.1101/2021.04.09.439207v2) :  
 **GEM-DeCan: Improved tumor immune microenvironment profiling through novel gene expression and DNA methylation signatures predicts immunotherapy response**  
